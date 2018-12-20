@@ -1,69 +1,53 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(SimpleApp());
-}
-
-class SimpleApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: "Hello",
-      home: new _MyStatefulText(),
-    );
-  }
-}
-
-class _MyStatefulText extends StatefulWidget {
-  _MyStatefulText({Key key}) : super(key: key);
-
-  @override
-  _MyTextState createState() {
-    return new _MyTextState();
-  }
-}
-
-class _MyTextState extends State<_MyStatefulText> {
-  String tw = "HelloWorld";
-
-  void _switchText() {
-    setState(() {
-      if (tw == "HelloWorld") {
-        tw = "WorldHello";
-      } else {
-        tw = "HelloWorld";
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: AppBar(
-        title: Text("Hello"),
-      ),
-      body: Container(
-        alignment: Alignment.center,
-        child: Column(
+  runApp(MaterialApp(
+    home: Scaffold(
+      appBar: new AppBar(title: new Text("Flutter")),
+      drawer: new Drawer(
+        child: new ListView(
           children: <Widget>[
-            Text(tw,
-                textAlign: TextAlign.center,
-                textDirection: TextDirection.ltr,
-                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
-            MaterialButton(
-              child: Text(
-                "Switch",
-                textDirection: TextDirection.ltr,
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+            new ClipRect(
+              child: new ListTile(
+                leading: new FlutterLogo(),
+                title: new Text("Flutter"),
               ),
-              textColor: Color.fromARGB(255, 0, 0, 0),
-              color: Color.fromARGB(255, 123, 104, 238),
-              onPressed: _switchText,
+            ),
+            new ListTile(
+              title: new Text("我的收藏"),
+              leading: new Icon(Icons.star),
+            ),
+            new ListTile(
+              title: new Text("其他"),
+              subtitle: new ListView(
+                children: <Widget>[
+                  new ListTile(
+                      leading: new FlutterLogo(), title: new Text("版本：1.0")),
+                  new ListTile(
+                      leading: new FlutterLogo(), title: new Text("评价")),
+                  new ListTile(
+                      leading: new FlutterLogo(), title: new Text("关于我们"))
+                ],
+              ),
             )
           ],
         ),
       ),
-    );
+
+    ),
+  ));
+}
+
+class HomePage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new _HomePageState();
+  }
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return new HomePage();
   }
 }
